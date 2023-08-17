@@ -1,4 +1,4 @@
-# Verificar P.A.
+# desafio final do chatgpt
 
 def erro(palavra) -> None:  # deixa qualquer texto em vermelho
     """
@@ -6,7 +6,8 @@ def erro(palavra) -> None:  # deixa qualquer texto em vermelho
 
     É usada para quando vou mostrar uma mensagem de erro qualquer
     """
-    print(f'\033[91m{palavra}\033[0m')
+    print(f'\033[91m{palavra}\033[0m' if isinstance(palavra, (str, int)) else palavra)
+
 
 
 def tratando_sequencia() -> int:  # para não tratar no programa principal eu faço uma função
@@ -15,8 +16,8 @@ def tratando_sequencia() -> int:  # para não tratar no programa principal eu fa
     """
     while True:
         try:
-            a = int(input('>> ').strip())
-            if a > 2:
+            numero = int(input('>> ').strip())
+            if numero > 2:
                 return a  # retornará o número se ele for maior que 2
 
             else:
@@ -28,7 +29,7 @@ def tratando_sequencia() -> int:  # para não tratar no programa principal eu fa
 
 def tratando_numero() -> int:
     """
-    Essa função retorna o número colocado pelo usuário com tratamento de erro 
+    Essa função retorna o número colocado pelo usuário
     """
 
     while True:
@@ -43,18 +44,18 @@ def verifica_pa(sequencia) -> str:
     """
     Essa função recebe uma lista e fala se os números dela são uma P.A.
     """
-    
+
     if isinstance(sequencia, list):
 
-        uau = sequencia[1] - sequencia[0]  # verifico a razão inicial da sequência
+        razao = sequencia[1] - sequencia[0]  # verifico a razão inicial da sequência
 
         for index in range(len(sequencia) - 1):
-            if (sequencia[index + 1]  - sequencia[index]) != uau:
+            if (sequencia[index + 1]  - sequencia[index]) != razao:
                 # razão inicial difere da nova razão não é uma P.A.
                 return 'não é uma P.A.'
 
         return 'é uma P.A.'
-    
+
     else:
         return 'só posso analisar listas'
 
@@ -88,4 +89,7 @@ while True:
     # verificação de P.A.
     epa = verifica_pa(numeros_usuario)
     print(epa)
-    break
+
+    continuar = str(input('você quer fazer outra sequência? [S / N]\n: ').strip().upper())
+    if continuar not in ('S', 'SIM'):
+        break
