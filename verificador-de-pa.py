@@ -1,4 +1,4 @@
-# desafio final do chatgpt
+# verificador de P.A.
 
 def erro(palavra) -> None:  # deixa qualquer texto em vermelho
     """
@@ -6,8 +6,7 @@ def erro(palavra) -> None:  # deixa qualquer texto em vermelho
 
     É usada para quando vou mostrar uma mensagem de erro qualquer
     """
-    print(f'\033[91m{palavra}\033[0m' if isinstance(palavra, (str, int)) else palavra)
-
+    print(f'\033[91m{palavra}\033[0m')
 
 
 def tratando_sequencia() -> int:  # para não tratar no programa principal eu faço uma função
@@ -18,7 +17,7 @@ def tratando_sequencia() -> int:  # para não tratar no programa principal eu fa
         try:
             numero = int(input('>> ').strip())
             if numero > 2:
-                return a  # retornará o número se ele for maior que 2
+                return numero  # retornará o número se ele for maior que 2
 
             else:
                 erro('Por favor, coloque números positivos maiores que 2')
